@@ -7,7 +7,7 @@ class neighborhoods{
 
     //menu button
     menuButton(){
-        return cy.get('.toggleMenuBtn > fa > .fa')
+        return cy.get('.toggleMenuBtn > .fa')
     }
 
     //b2b sales link

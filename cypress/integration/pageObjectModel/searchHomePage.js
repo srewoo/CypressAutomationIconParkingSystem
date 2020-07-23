@@ -64,7 +64,7 @@ class searchHomePage{
 
     //select event
     selectEvent(){
-        return cy.get('#stime0')
+        return cy.get('#llctext0')
     }
 
     //filter button

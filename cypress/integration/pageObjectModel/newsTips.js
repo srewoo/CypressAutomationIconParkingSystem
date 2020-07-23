@@ -7,7 +7,7 @@ class newsTips{
 
     //Menu button
     menuButton(){
-        return cy.get('.toggleMenuBtn > fa > .fa')
+        return cy.get('.toggleMenuBtn > .fa')
     }
 
     //news & Tips link

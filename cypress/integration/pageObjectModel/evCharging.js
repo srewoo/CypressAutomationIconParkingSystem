@@ -7,7 +7,7 @@ class evCharging{
 
     //menu button
     menuButton(){
-        return cy.get('.toggleMenuBtn > fa > .fa')
+        return cy.get('.toggleMenuBtn > .fa')
     }
 
     //search box
@@ -164,7 +164,7 @@ class evCharging{
 
     //email coupon button
     emailCouponButton(){
-        return cy.get('#floating-label-google-map1 > :nth-child(2) > .row > :nth-child(1) > .btn')
+        return cy.get('#floating-label-google-map2 > :nth-child(2) > .row > :nth-child(1) > .btn')
     }
 
     //cancel Button

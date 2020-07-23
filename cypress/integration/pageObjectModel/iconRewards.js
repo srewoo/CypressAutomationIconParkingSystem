@@ -29,7 +29,7 @@ class iconrewards{
 
     //Vew reward details
     viewBenifits(){
-        return cy.get('.hidden-xs > h2 > small > a')
+        return cy.get('.theme-btn')
     }
 
     //icon reward text
@@ -39,7 +39,7 @@ class iconrewards{
 
     //reward member header
     rewardMemberText(){
-        return cy.get('.well > .clearfix > .row > .col-md-offset-6 > h2')
+        return cy.get('.well > .text-uppercase')
     }
 
     //membership compair

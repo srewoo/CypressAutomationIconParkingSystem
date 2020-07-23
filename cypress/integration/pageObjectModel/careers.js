@@ -7,7 +7,7 @@ class careers{
 
     //Menu button
     menuButton(){
-        return cy.get('.toggleMenuBtn > fa > .fa')
+        return cy.get('.toggleMenuBtn > .fa')
     }
 
     //Faq menu

@@ -191,7 +191,7 @@ class monthlyParkingBooking{
 
     //total
     totalAmount(){
-        return cy.get(':nth-child(5) > .clearfix > .currentCarD > .fa-2x')
+        return cy.get('.currentCarD > .fa-2x')
     }
 
     //submit
