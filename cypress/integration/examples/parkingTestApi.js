@@ -81,7 +81,7 @@ describe('API Testing', function()
 
     })
 
-    it.only('POST Request', function()
+    it('POST Request', function()
     {
         const reqBody = { "name": "morpheus", "job": "leader" }
         cy.request('POST','/users?page=2',reqBody).then((response) => {

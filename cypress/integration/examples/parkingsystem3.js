@@ -5,6 +5,9 @@ import Faq from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/faq.js'
 import NewsTips from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/newsTips.js'
 import AboutUs from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/aboutUs.js'
 import Careers from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/careers.js'
+import HomePage from  'D:/CypressWorkSpace/cypress/integration/pageObjectModel/homePage.js'
+import BusinessSolution from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/businessSolution.js'
+
 
 /// <reference types="Cypress" />
 
@@ -21,6 +24,9 @@ describe('parkingsystem 3 - ', function()
     const newsTips = new NewsTips
     const aboutUs = new AboutUs
     const careers = new Careers
+    const homepage =new HomePage
+    const businessSolution = new BusinessSolution
+
 
     before(function(){
 
@@ -29,6 +35,7 @@ describe('parkingsystem 3 - ', function()
             this.data=data
 
         })
+        
     })
 
 
@@ -441,10 +448,103 @@ describe('parkingsystem 3 - ', function()
     //Home page
     it('home page', function() {
 
-    cy.visit('https://test.iconparkingsystems.com/')
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        homepage.iconRewardLogo().should('be.visible')
+            .and('have.attr', 'src','../../assets/img/new-homepage/b2b-img/reward.png')
+            .and('have.css','text-align','center')
+
+        homepage.dailyTab().click()
+
+        homepage.enterenceDate().should('be.visible')
+
+        homepage.monthlyTab().click()
+
+        homepage.enterenceDate().should('not.have.text', 'ENTRANCE DATE').should('contain','MONTHLY PARKING STARTING')
+
+        homepage.signUpLink().click()
+
+        cy.url().should('eq','https://test.iconparkingsystems.com/icon-rewards-register')
+
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        if(homepage.colapseMessage().should('be.visible')){
+
+            homepage.closeColapseMessage().click()
+
+        }
+        else{
+            console.log('baner not present')
+        }
+
+        homepage.parkingForBusiness().should('be.visible').and('contain','Icon For Business - Safe & Seamless Parking for Your Company')
+        homepage.parkingSafe().should('be.visible').and('contain','Defining a New Standard of Parking Garage Cleanliness')
+        homepage.firstResponders().should('be.visible').and('contain','$15 Parking Rate Up to 24 Hours')
+
+        homepage.iconEmail().should('be.visible').should('contain','iconforbusiness@iconparking.com')
+
+        homepage.parkingPearks().should('contain','Parking has it’s perks').and('have.css','font-size','32px')
+
+        homepage.parkingDiscounts().should('be.visible').and('contain','Receive member discounts on most direct hourly or daily parking purchases.')
+        homepage.anualBonus().should('be.visible').and('contain','Annual Bonus')
+        homepage.bestPricing().should('be.visible').and('contain','Best Pricing')
+
+        homepage.mobileNumber().type('9656545434')
+        homepage.sendButton().click()
+
+        homepage.appleSTorelink().should('be.visible')
+        homepage.androidStore().should('be.visible')
+
+        homepage.emailSubscription().type('abcd')
+        homepage.subscribeButton().click()
+
+        cy.get('.toast-title').should('contain','Sorry')
+
+        cy.get('.toast-close-button').click()
+        
+        //Random number generator
+        const uuid = () => Cypress._.random(0, 1e6)
+        const id = uuid()
+        const testname = `testname${id}`
+
+        homepage.emailSubscription().type(testname + '@gmail.com')
+        homepage.subscribeButton().click()
+
+        //cy.wait(5000)
+
+        // cy.get('.toast-title').should('contain','sucess!')
+
+        homepage.emailSubscription().type('abcd@gmail.com')
+        homepage.subscribeButton().click()
+
+        //cy.get('.toast-title').should('contain','Already added')
+
+        homepage.tagLine().should('contain','We Park New York')
 
 
     })
 
+
+
+    it('business solution', function()
+    {
+
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        businessSolution.businessSolutionLink().click({force:true})
+
+        businessSolution.pageHeader().should('contain','Welcome Back to Work! You’re in great company.')
+            .and('have.css','color','rgb(255, 255, 255)')
+
+
+        businessSolution.formpanel().should('be.visible')
+
+        businessSolution.brandLogo().should('be.visible')
+
+
+
+
+
+    })
 
 })      
