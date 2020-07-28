@@ -14,7 +14,7 @@ import Neighborhoods from 'D:/CypressWorkSpace/cypress/integration/pageObjectMod
 /*
  * Test Suite for IconParking System
  */
-describe.only('parkingsystem 2- ', function()
+describe('parkingsystem 2- ', function()
 {
     const brand = new Brand
     const promo = new Promo

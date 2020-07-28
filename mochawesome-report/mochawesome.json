@@ -1,0 +1,249 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 8,
+    "passes": 7,
+    "pending": 0,
+    "failures": 1,
+    "start": "2020-07-27T05:22:11.684Z",
+    "end": "2020-07-27T05:28:56.407Z",
+    "duration": 404723,
+    "testsRegistered": 8,
+    "passPercent": 87.5,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b8f6ba9e-9da8-4dd3-8557-bdd7c878cf98",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\parkingsystem3.js",
+      "file": "cypress\\integration\\examples\\parkingsystem3.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+          "title": "parkingsystem 3 - ",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "vehicle request",
+              "fullTitle": "parkingsystem 3 -  vehicle request",
+              "timedOut": null,
+              "duration": 60960,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900);\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nvehicleRequest.myAccountLink().click();\nvehicleRequest.vehicleRequestTab().should('contain', 'Vehicle Request').click();\nvehicleRequest.allGaragerButton().should('be.visible').should('have.text', 'See All Garages').should('have.css', 'background-color', 'rgba(0, 0, 0, 0)');\nvehicleRequest.allRequestButton().should('be.visible').should('contain', 'Vehicle Request');\nvehicleRequest.garageList().should('be.visible');\nvar getIframeDocument = function getIframeDocument() {\n  return cy.get('#iframePage').its('0.contentDocument').should('exist');\n};\nvar getIframeBody = function getIframeBody() {\n  // get the document\n  return getIframeDocument() // automatically retries until body is loaded\n  .its('body').should('not.be.undefined').then(cy.wrap);\n}; //new approach\n\ncy.get('#iframePage').then(function ($iframe) {\n  var $body = $iframe.contents().find('body'); //cy.wrap($body).find('.col-sm-6 ng-binding')\n  //cy.get('.col-sm-6 ng-binding').click()\n}); //getIframeBody().find('col-sm-6 ng-binding').should('be.visible')",
+              "err": {},
+              "uuid": "fbc9913d-8bcb-4624-8f17-b653d16f877b",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "search for parking",
+              "fullTitle": "parkingsystem 3 -  search for parking",
+              "timedOut": null,
+              "duration": 38623,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900);\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nsearchHomePage.myAccountLink().click(); // cy.wait(5000)\nsearchHomePage.searchBox().clear().type('165 WEST 66TH STREET PARKING LLC', {\n  delay: 100\n});\nsearchHomePage.selectAddress().click({\n  force: true\n});\nsearchHomePage.addressPopUp().should('be.visible');\nsearchHomePage.fullAddress().should('contain.text', '165 W. 66th Street');\nsearchHomePage.parkigImage().should('be.visible').should('have.attr', 'alt', '165 West 66th Street');\ncy.get('#parkDetail').scrollTo('bottomLeft');\nsearchHomePage.amenitiesList1().should('be.visible').should('contain', 'Motorcycle Parking');\nsearchHomePage.amenitiesList2().should('be.visible').should('contain', 'Open 24 Hours');\nsearchHomePage.amenitiesList3().should('be.visible').should('contain', 'Indoor Parking');\nsearchHomePage.amenitiesList4().should('be.visible').should('contain', 'Oversized Vehicles');\nsearchHomePage.amenitiesList5().should('be.visible').should('contain', 'Monthly Parking');",
+              "err": {},
+              "uuid": "63024d8e-741d-40f1-83c3-ce2e3448f98c",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "filter parking search",
+              "fullTitle": "parkingsystem 3 -  filter parking search",
+              "timedOut": null,
+              "duration": 41538,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900);\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nsearchHomePage.myAccountLink().click();\nsearchHomePage.searchBox().clear().type('165 WEST 66TH STREET PARKING LLC', {\n  delay: 100\n});\nsearchHomePage.selectEvent().click({\n  force: true\n});\nsearchHomePage.filterButton().should('be.visible').should('contain.text', 'Filters'); //searchHomePage.parkingPlaceMap().should('be.visible')\nsearchHomePage.filterButton().click();\nsearchHomePage.teslaChargerFIlter().click({\n  force: true\n});\nsearchHomePage.motorcycleParking().click({\n  force: true\n});\nsearchHomePage.closeFIlterButton().click({\n  force: true\n});\nsearchHomePage.parkingPlaceMap().should('not.be.visible');\nsearchHomePage.filterButton().click();\nsearchHomePage.motorcycleParking().click({\n  force: true\n});\nsearchHomePage.teslaChargerFIlter().click({\n  force: true\n});\nsearchHomePage.closeFIlterButton().click({\n  force: true\n});\ncy.wait(5000); // searchHomePage.parkingPlaceMap().should('be.visible')",
+              "err": {},
+              "uuid": "fd9ab7b6-9645-4311-b193-96544a4c5144",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "monthly parking booking",
+              "fullTitle": "parkingsystem 3 -  monthly parking booking",
+              "timedOut": null,
+              "duration": 74743,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900);\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nmonthlyParkingBooking.myAccountLink().click();\nmonthlyParkingBooking.homeButton().should('be.visible').click();\nmonthlyParkingBooking.monthlyBookingBtn().should('contain.text', 'MONTHLY').should('have.css', 'font-size', '15px').click();\nmonthlyParkingBooking.searchBox().should('be.visible').clear().type('1056 5TH AVENUE PARKING LLC', {\n  delay: 300\n});\ncy.get('#llctext0').click();\ncy.get('.customeBtn').click(); //monthlyParkingBooking.centralParkAddress().click({force:true})\n// cy.get('.search-section > .btn-fill').click()\n// monthlyParkingBooking.selectAddressCP().click({force:true})\nmonthlyParkingBooking.parkingImg().should('be.visible');\nmonthlyParkingBooking.parkingName().should('contain.text', '1056 Fifth Ave');\nmonthlyParkingBooking.buyMonthlyOverlayButton().should('contain.text', ' | Buy Monthly').click();\nmonthlyParkingBooking.firstName().should('be.visible').clear().type('harry');\nmonthlyParkingBooking.lastName().should('be.visible').clear({\n  force: true\n}).type('potter');\nmonthlyParkingBooking.emailId().should('be.visible').clear({\n  force: true\n}).type('hpotter@gmail.com');\nmonthlyParkingBooking.phoneNumber().should('be.visible').clear({\n  force: true\n}).type('9767678787');\nmonthlyParkingBooking.conpanyName().should('be.visible').clear({\n  force: true\n}).type('hogowarts');\nmonthlyParkingBooking.addressLine1().should('be.visible').clear({\n  force: true\n}).type('room no 1');\nmonthlyParkingBooking.addressLine2().should('be.visible').clear({\n  force: true\n}).type('building n01');\nmonthlyParkingBooking.cityName().should('be.visible').clear({\n  force: true\n}).type('London');\nmonthlyParkingBooking.stateCode().should('be.visible').clear({\n  force: true\n}).type('CA');\nmonthlyParkingBooking.zipCode().should('be.visible').clear({\n  force: true\n}).type('087898');\nmonthlyParkingBooking.vehicheMake().should('be.visible').clear({\n  force: true\n}).type('BMW');\nmonthlyParkingBooking.vehicleModel().should('be.visible').clear({\n  force: true\n}).type('X5');\nmonthlyParkingBooking.licensePlate().should('be.visible').clear({\n  force: true\n}).type('Ny12ne7623');\nmonthlyParkingBooking.vehicleColor().should('be.visible').clear({\n  force: true\n}).type('black');\nmonthlyParkingBooking.additionalDriver1().should('be.visible').clear({\n  force: true\n}).type('ron');\nmonthlyParkingBooking.additionalDriver2().should('be.visible').clear({\n  force: true\n}).type('melfoy');\nmonthlyParkingBooking.additionalDriver3().should('be.visible').clear({\n  force: true\n}).type('nevil');\nmonthlyParkingBooking.nameOnCard().should('be.visible').clear({\n  force: true\n}).type('harry potter');\nmonthlyParkingBooking.cardNumber().should('be.visible').clear({\n  force: true\n}).type('4575002620096754');\nmonthlyParkingBooking.expireDate().should('be.visible').select('03', {\n  force: true\n});\nmonthlyParkingBooking.expireYear().should('be.visible').select('24', {\n  force: true\n});\nmonthlyParkingBooking.securityCode().should('be.visible').clear({\n  force: true\n}).type('521');\nmonthlyParkingBooking.promoCode().should('be.visible').clear({\n  force: true\n}).type('ICON10');\nmonthlyParkingBooking.zipCodePayment().should('be.visible').clear({\n  force: true\n}).type('098787');\nmonthlyParkingBooking.zipCode().should('be.visible').type('07035', {\n  force: true\n}); //monthlyParkingBooking.price().should('be.visible').should('contain.text','$718.06')\n//monthlyParkingBooking.tax().should('be.visible').should('contain.text',' $313.94')\nmonthlyParkingBooking.totalAmount().should('be.visible').should('contain.text', '$850.00');\nmonthlyParkingBooking.submitBtn().should('be.visible').click();\nmonthlyParkingBooking.modelpop().should('be.visible').should('contain.text', 'code discount will be applied to the final credit card charge');\nmonthlyParkingBooking.gotItButton().click();\nmonthlyParkingBooking.errorToastMessage().should('be.visible').should('contain.text', 'validate payment');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `.overlay > .btn`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `.overlay > .btn`, but never found it.\n    at Context.eval (https://test.iconparkingsystems.com/__cypress/tests?p=cypress\\integration\\examples\\parkingsystem3.js:196:53)",
+                "diff": null
+              },
+              "uuid": "9437732c-f608-4c2c-aa10-cf6b3a50c6de",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "faq section",
+              "fullTitle": "parkingsystem 3 -  faq section",
+              "timedOut": null,
+              "duration": 37876,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900); // cy.viewport('ipad-mini','portrait')\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nfaq.myAccountLink().click();\nfaq.menuButton().click();\nfaq.faqlink().should('be.visible').should('contain.text', 'FAQ').click();\nfaq.commonSection().should('be.visible').should('contain.text', 'Common Questions');\nfaq.bookingSection().should('be.visible').should('contain.text', 'Booking');\nfaq.pageHeader().should('contain.text', 'How can we help you?');\nfaq.faqTitle().should('contain.text', 'Frequently asked questions');\nfaq.faqSearch().should('be.visible').should('have.attr', 'placeholder', 'What are you looking for?');\nfaq.faqSearch().type('auto pay');\nfaq.faqNoResults().should('be.visible');\nfaq.faqSearch().clear().type('account');\nfaq.selectArticle().should('be.visible').should('contain.text', 'How do I change my monthly parking location?').click();\nfaq.faqResult().should('contain.text', 'Call the monthly sales office at 1 (888) 705-7845.').should('be.visible');",
+              "err": {},
+              "uuid": "9e0640ad-87e4-4659-9ac2-4b9e9c4cd0cf",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "news & Tips section",
+              "fullTitle": "parkingsystem 3 -  news & Tips section",
+              "timedOut": null,
+              "duration": 73160,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900); // cy.viewport('ipad-mini','portrait')\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\nnewsTips.myAccountLink().click();\nnewsTips.menuButton().click();\nnewsTips.newsTipsLink().should('contain', 'News + Tips').click();\nnewsTips.pageHeader().should('contain.text', 'NEWS');\nnewsTips.recentPost().should('be.visible');\nnewsTips.catagoriesSection().should('be.visible');\ncy.url().should('eq', 'https://test.iconparkingsystems.com/cms/news/');\nnewsTips.nextPageLink().should('be.visible').click();\ncy.url().should('contain', 'news/page/2/');\ncy.scrollTo('bottom');\nnewsTips.recentPost1().should('be.visible').click();\ncy.get('iframe').should('be.visible');\nnewsTips.facebookLink().should('be.visible').should('have.attr', 'alt', 'Facebook');\nnewsTips.backButton().should('be.visible').click();\ncy.url().should('eq', 'https://test.iconparkingsystems.com/cms/news/');\nnewsTips.readMore().should('be.visible').should('have.attr', 'href', 'https://test.iconparkingsystems.com/cms/news/earth-day-eco-tips-icon-quik-park/');\nnewsTips.readMore().click();\ncy.url().should('eq', 'https://test.iconparkingsystems.com/cms/news/earth-day-eco-tips-icon-quik-park/');\nnewsTips.authorName().should('be.visible').should('have.attr', 'title', 'View all posts by Edythe Wilson');",
+              "err": {},
+              "uuid": "9d810fc3-ea61-4cfd-8ce6-afa430229464",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "about us section",
+              "fullTitle": "parkingsystem 3 -  about us section",
+              "timedOut": null,
+              "duration": 36367,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900); // cy.viewport('ipad-mini','portrait')\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\naboutUs.myAccountLink().click();\naboutUs.menuButton().click();\naboutUs.aboutUslink().should('contain', ' About Us').click();\naboutUs.pageHeader().should('contain', 'About Us').should('have.css', 'color', 'rgb(237, 130, 34)').should('have.css', 'font-size', '45px');\naboutUs.parkingImage().should('be.visible').should('have.attr', 'src', 'https://test.iconparkingsystems.com/cms/wp-content/uploads/2018/06/Park-Sign-reversed.png');\naboutUs.coreValues().should('contain', 'OUR CORE VALUES').should('be.visible');\naboutUs.passionInsparation().should('have.attr', 'src', 'https://test.iconparkingsystems.com/cms/wp-content/uploads/2018/06/core-heart.png').should('be.visible');\naboutUs.integrityTest().should('have.attr', 'src', 'https://test.iconparkingsystems.com/cms/wp-content/uploads/2018/06/core-trust.png').should('be.visible');\naboutUs.serviceExelence().should('have.attr', 'src', 'https://test.iconparkingsystems.com/cms/wp-content/uploads/2018/06/core-excellence.png').should('be.visible');\naboutUs.locations().should('be.visible').should('contain', 'Locations').and('contain', '200');\naboutUs.carsParkedGlobally().should('be.visible').should('contain', 'Cars Parked Daily').and('contain', '40,000');\naboutUs.yearsInBusiness().should('be.visible').should('contain', 'Years in business').and('contain', '50'); //aboutUs.tagLine().should('be.visible').should('contain','WE PARK NEW YORK™')",
+              "err": {},
+              "uuid": "6277d4d0-b623-4ead-86ac-b199eb981d85",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "careers",
+              "fullTitle": "parkingsystem 3 -  careers",
+              "timedOut": null,
+              "duration": 36743,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.viewport(1366, 900);\ncy.login({\n  email: 'trapti.saxena@outworx.com',\n  password: 'Test@123'\n});\ncareers.myAccountLink().click();\ncareers.menuButton().click();\ncareers.careersLink().should('contain', 'Careers').click(); //careers.pageHeader().should('contain','BE AN ICON').and('have.css','color','rgb(237, 130, 34)').and('have.css','font-size','45px')\ncareers.parkingHero().should('have.css', 'color', 'rgb(0, 0, 0)').and('have.css', 'font-size', '25px').and('contain', 'THE SUPERHEROES OF PARKING');\ncareers.applyButton().should('be.visible').and('contain', 'Apply Online').and('have.attr', 'href', '/employment-application');\ncareers.applyButton().click();\ncy.url().should('eq', 'https://test.iconparkingsystems.com/employment-application');\ncareers.pageImage().should('be.visible');\nvar getIframeDocument = function getIframeDocument() {\n  return cy.get('.clearfix > .mar-top-0').its('0.contentDocument').should('exist');\n};\nvar getIframeBody = function getIframeBody() {\n  // get the document\n  return getIframeDocument() // automatically retries until body is loaded\n  .its('body').should('not.be.undefined').then(cy.wrap);\n}; //new approach\n\ncy.get('.clearfix > .mar-top-0').then(function ($iframe) {\n  var $body = $iframe.contents(); //.find('body')\n  //cy.get($body).find('#dgJob > tbody > tr:nth-child(2) > td:nth-child(1) > a')\n  //cy.get('#dgJob > tbody > tr:nth-child(2) > td:nth-child(1) > a').click()\n});",
+              "err": {},
+              "uuid": "adac4534-5a24-4005-9977-7e0d43c804a6",
+              "parentUUID": "79a16ac8-0f7d-4684-9a67-4de14338e3c1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fbc9913d-8bcb-4624-8f17-b653d16f877b",
+            "63024d8e-741d-40f1-83c3-ce2e3448f98c",
+            "fd9ab7b6-9645-4311-b193-96544a4c5144",
+            "9e0640ad-87e4-4659-9ac2-4b9e9c4cd0cf",
+            "9d810fc3-ea61-4cfd-8ce6-afa430229464",
+            "6277d4d0-b623-4ead-86ac-b199eb981d85",
+            "adac4534-5a24-4005-9977-7e0d43c804a6"
+          ],
+          "failures": [
+            "9437732c-f608-4c2c-aa10-cf6b3a50c6de"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 400010,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.1"
+    },
+    "marge": {
+      "options": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+          "reportDir": "cypress/reports/mochawsome-report",
+          "charts": true,
+          "quite": true,
+          "overwrite": false,
+          "html": false,
+          "json": true,
+          "timestamp": "mmddyyy-HHMMss"
+        }
+      },
+      "version": "5.1.0"
+    }
+  }
+}

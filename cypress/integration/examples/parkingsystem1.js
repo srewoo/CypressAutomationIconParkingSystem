@@ -3,7 +3,7 @@
 /*
  * Test Suite for IconParking System
  */
-describe.only('parkingsystem 1 - ', function()
+describe('parkingsystem 1 - ', function()
 {
 
     before(function(){

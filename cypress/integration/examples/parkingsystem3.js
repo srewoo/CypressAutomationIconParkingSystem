@@ -11,7 +11,7 @@ import Careers from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/car
 /*
  * Test Suite for IconParking System
  */
-describe.only('parkingsystem 3 - ', function()
+describe('parkingsystem 3 - ', function()
 {
 
     const vehicleRequest = new VehicleRequest
@@ -435,6 +435,14 @@ describe.only('parkingsystem 3 - ', function()
            //cy.get($body).find('#dgJob > tbody > tr:nth-child(2) > td:nth-child(1) > a')
            //cy.get('#dgJob > tbody > tr:nth-child(2) > td:nth-child(1) > a').click()
             })
+
+    })
+
+    //Home page
+    it('home page', function() {
+
+    cy.visit('https://test.iconparkingsystems.com/')
+
 
     })
 

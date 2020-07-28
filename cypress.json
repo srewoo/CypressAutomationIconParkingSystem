@@ -1,5 +1,6 @@
 {
   "video": false,
+  "screenshot":true,
   "watchForFileChanges": true,
   "execTimeout": 15000,
   "taskTimeout": 15000,
@@ -14,5 +15,17 @@
     "fonts.gstatic.com",
     "fonts.googleapis.com"
   ],
-  "projectId": "w7nqk6"
+  "projectId": "w7nqk6",
+  "reporter": "mochawesome",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mochawsome-report",
+            "charts": true,
+            "overwrite": false,
+            "html": false,
+            "json": true,
+            "timestamp":"mmddyyy-HHMMss"
+        }
+    }
 }
