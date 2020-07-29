@@ -143,8 +143,73 @@ class homePage{
         return cy.get('.col-sm-8 > .text-center > .text-white')
     }
 
+    //sign UP
+
+    //first name 
+    firstName(){
+        return cy.get(':nth-child(1) > .form-group > .form-control')
+    }
+
+    //last name
+    lastName(){
+        return cy.get('.row > :nth-child(2) > .form-group > .form-control')
+    }
+
+    //email
+    emailId(){
+        return cy.get('.row > :nth-child(3) > .form-group > .form-control')
+    }
+
+    //phone
+    phoneNumber(){
+        return cy.get(':nth-child(4) > .form-group > .form-control')
+    }
+
+    //password
+    password(){
+        return cy.get(':nth-child(6) > .form-group > .form-control')
+    }
+
+    //confirm password
+    confirmPassword(){
+        return cy.get(':nth-child(7) > .form-group > .form-control')
+    }
+
+    //invite code
+    inviteCode(){
+        return cy.get(':nth-child(9) > .form-group > .form-control')
+    }
+
+    //checlbox
+    checkbox(){
+        return cy.get('.enroll-terms-lbl > .ng-untouched')
+    }
+
+    //terms
+    termsConditionLink(){
+        return cy.get('.enroll-terms-lbl > a')
+    }
+
+    //enroll button
+    enrollButton(){
+        return cy.get('.mar-top-xs > .btn')
+    }
+
+    //header
+    termsHeader(){
+        return cy.get('.modal-body > :nth-child(2) > .text-uppercase')
+    }
 
 
+    //accept button
+    acceptButton(){
+        return cy.get('.modal-body > .form-group > .btn-fill')
+    }
+
+    //cancel Button
+    cancelButton(){
+        return cy.get('.theme-btn')
+    }
 
 
 }

@@ -30,7 +30,7 @@ describe('parkingsystem 3 - ', function()
 
     before(function(){
 
-        cy.fixture('example.json').then(function(data){
+        cy.fixture('users.json').then(function(data){
 
             this.data=data
 
@@ -541,6 +541,53 @@ describe('parkingsystem 3 - ', function()
 
         businessSolution.brandLogo().should('be.visible')
 
+
+
+
+
+    })
+
+
+    it('sign up',function(){
+
+
+
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        homepage.iconRewardLogo().should('be.visible')
+            .and('have.attr', 'src','../../assets/img/new-homepage/b2b-img/reward.png')
+            .and('have.css','text-align','center')
+
+        homepage.dailyTab().click()
+
+        homepage.signUpLink().click()
+
+        cy.url().should('eq','https://test.iconparkingsystems.com/icon-rewards-register')
+
+        homepage.firstName().type(this.data.firstname)
+        homepage.lastName().type(this.data.lastName)
+        homepage.emailId().type(this.data.email)
+        homepage.phoneNumber().type(this.data.phoneNumberWrong)
+        homepage.password().type(this.data.password)
+        homepage.confirmPassword().type(this.data.confirmPassword)
+        homepage.inviteCode().should('be.visible')
+
+        homepage.checkbox().click()
+
+        homepage.termsHeader().should('be.visible').and('contain','ENROLL IN ICON REWARDS')
+        homepage.acceptButton().should('be.visible').and('contain','I AGREE').and('have.css','font-size','15px')
+        homepage.cancelButton().should('be.visible').and('contain','CANCEL').and('have.css','font-size','15px')
+
+        homepage.acceptButton().click()
+
+        homepage.enrollButton().should('be.enabled').click()
+
+
+        cy.get('.toast-title').should('be.visible').and('contain','Sorry!')
+
+        homepage.phoneNumber().clear().type(this.data.phoneNumberCorrect)
+
+        homepage.enrollButton().should('be.enabled').click()
 
 
 
