@@ -596,7 +596,7 @@ describe('parkingsystem 3 - ', function()
 
 
     //send reservation details by Email
-    it.only('send reservation details by Email', function() 
+    it('send reservation details by Email', function() 
     {
 
         cy.viewport(1366, 900)
