@@ -26,7 +26,21 @@ class reservations{
         return cy.get(':nth-child(1) > [data-label="User"] > .tableInfo')
     }
     
-    //
+    //email field
+    emailField(){
+        return cy.get('.reservation-email > .form-group > .form-control')
+    }
+
+    //sendButton
+    sendButton(){
+        return cy.get('.iconButton')
+    }
+
+    //notofication title
+    tostMessage(){
+        return cy.get('.notification')
+    }
+
 
 
 

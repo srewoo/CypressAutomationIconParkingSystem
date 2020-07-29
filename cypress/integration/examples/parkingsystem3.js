@@ -7,6 +7,7 @@ import AboutUs from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/abo
 import Careers from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/careers.js'
 import HomePage from  'D:/CypressWorkSpace/cypress/integration/pageObjectModel/homePage.js'
 import BusinessSolution from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/businessSolution.js'
+import Reservations from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/reservations.js'
 
 
 /// <reference types="Cypress" />
@@ -26,6 +27,8 @@ describe('parkingsystem 3 - ', function()
     const careers = new Careers
     const homepage =new HomePage
     const businessSolution = new BusinessSolution
+    const reservations = new Reservations
+
 
 
     before(function(){
@@ -589,9 +592,52 @@ describe('parkingsystem 3 - ', function()
 
         homepage.enrollButton().should('be.enabled').click()
 
+    })
 
 
+    //send reservation details by Email
+    it.only('send reservation details by Email', function() 
+    {
+
+        cy.viewport(1366, 900)
+
+        cy.login({email: 'trapti.saxena@outworx.com', password: 'Test@123'})
+
+        reservations.reservationsTab().click()
+
+        cy.wait(5000)
+
+        reservations.reservationsTab().click()
+
+        cy.url().should('eq','https://admin-test.iconparkingsystems.com/admin/reservations')
+
+        reservations.reservationsHeader().should('contain.text','Reservations')
+
+        reservations.reservationSearch().should('be.visible')
+        
+        reservations.reservationSearchButton().should('be.visible')
+
+        reservations.reservationSearch().type('nishant.kamboj')
+
+        reservations.reservationSearchButton().click()
+
+        cy.wait(10000)
+
+        reservations.userselect().should('contain.text','Nishant')
+
+        reservations.userselect().click()
+
+        reservations.emailField().clear().type(this.data.email)
+
+        reservations.sendButton().click()
+
+        cy.wait(3000)
+
+        reservations.tostMessage().should('be.visible')
+        
 
     })
+
+
 
 })      
