@@ -639,7 +639,7 @@ describe('parkingsystem 3 - ', function()
     })
 
     //Change user password
-    it.only('change user password',function()
+    it('change user password',function()
     {
 
         cy.viewport(1366, 900)
@@ -675,6 +675,38 @@ describe('parkingsystem 3 - ', function()
        cy.url().should('eq','https://test.iconparkingsystems.com/')
 
        cy.login({email: 'cypresscat@gmail.com', password: '2wsx@WSX'}) 
+
+    })
+
+
+    it('business enquiry form submit', function()
+    {
+
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        businessSolution.businessSolutionLink().click({force:true})
+
+
+
+        businessSolution.formpanel().should('be.visible')
+
+        businessSolution.companyName().type('icon company')
+
+        businessSolution.numberOfEmployees().select('20')
+
+        businessSolution.firstName().type('harry')
+
+        businessSolution.lastName().type('potter')
+
+        businessSolution.emailID().type('hpotter@gmail.com')
+
+        businessSolution.phoneNumber().type('7876765654')
+
+        businessSolution.formSubmit().click()
+
+        businessSolution.confirmationMessage().should('contain','Thank you for your inquiry.')
+
+
 
     })
 

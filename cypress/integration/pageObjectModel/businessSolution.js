@@ -20,8 +20,44 @@ brandLogo(){
     return cy.get('.brandLogoPage')
 }
 
+//page header
+pageHeader(){
+    return cy.get('.panel > .text-primary')
+}
 
+//form
+companyName(){
+    return cy.get('#company_name')
+}
 
+numberOfEmployees(){
+    return cy.get('#number_of_employees')
+}
+
+firstName(){
+    return cy.get('#fname')
+}
+
+lastName(){
+    return cy.get('#lname')
+}
+
+emailID(){
+    return cy.get('#emailc')
+}
+
+phoneNumber(){
+    return cy.get('#phonec')
+}
+
+formSubmit(){
+    return cy.get('.clearfix > .form-group > .btn')
+}
+
+//confirmation message
+confirmationMessage(){
+    return cy.get('b')
+}
 
 }
 
