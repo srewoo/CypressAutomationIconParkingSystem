@@ -209,7 +209,7 @@ describe('parkingsystem 1 - ', function()
         cy.get('.admin-table-header > .admin-list-table-search > .fa').click();
 
         cy.get('.no-results > p').should('be.visible').should('contain.text','No results for that search')
-
+        
 
     })
 

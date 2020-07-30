@@ -638,6 +638,45 @@ describe('parkingsystem 3 - ', function()
 
     })
 
+    //Change user password
+    it.only('change user password',function()
+    {
+
+        cy.viewport(1366, 900)
+    
+        cy.login({email: 'trapti.saxena@outworx.com', password: 'Test@123'}) 
+
+        cy.get('.admin-table-header > .admin-list-table-search > input').click();
+
+        cy.get('.admin-table-header > .admin-list-table-search > input').click().clear().type('cypresscat');
+
+        cy.get('.admin-table-header > .admin-list-table-search > .fa').click();
+
+        cy.get('[data-label="Name"] > .tableInfo').should('contain.text','cypress')
+
+        cy.get('[data-label="Email"] > .tableInfo').should('contain.text','cypress')
+
+        cy.get('[data-label="Name"] > .tableInfo').click()
+
+       const email11 = cy.get('.user-detail > :nth-child(2) > :nth-child(2)').its('val')
+
+       console.log(email11)
+
+       cy.get('.change-password-inputs > :nth-child(1) > .form-control').type('2wsx@WSX')
+
+       cy.get('.change-password-inputs > :nth-child(2) > .form-control').type('2wsx@WSX')
+
+       cy.get('.iconButton').click()
+
+       cy.get('.notification-title').should('be.visible')
+
+       cy.get('.col-sm-9 > .memberActions > ul > :nth-child(2) > .logoutBtn').click({force: true})
+
+       cy.url().should('eq','https://test.iconparkingsystems.com/')
+
+       cy.login({email: 'cypresscat@gmail.com', password: '2wsx@WSX'}) 
+
+    })
 
 
 })      
