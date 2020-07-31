@@ -1,13 +1,14 @@
-import VehicleRequest from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/vehicleRequest.js'
-import SearchHomePage from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/searchHomePage.js'
-import MonthlyParkingBooking from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/monthlyParkingBooking.js'
-import Faq from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/faq.js'
-import NewsTips from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/newsTips.js'
-import AboutUs from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/aboutUs.js'
-import Careers from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/careers.js'
-import HomePage from  'D:/CypressWorkSpace/cypress/integration/pageObjectModel/homePage.js'
-import BusinessSolution from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/businessSolution.js'
-import Reservations from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/reservations.js'
+import VehicleRequest from './../pageObjectModel/vehicleRequest'
+import SearchHomePage from './../pageObjectModel/searchHomePage'
+import MonthlyParkingBooking from './../pageObjectModel/monthlyParkingBooking'
+import Faq from './../pageObjectModel/faq'
+import NewsTips from './../pageObjectModel/newsTips'
+import AboutUs from './../pageObjectModel/aboutUs'
+import Careers from './../pageObjectModel/careers'
+import HomePage from  './../pageObjectModel/homePage'
+import BusinessSolution from './../pageObjectModel/businessSolution'
+import Reservations from './../pageObjectModel/reservations'
+import RequestInfo from './../pageObjectModel/requestInfoForm'
 
 
 /// <reference types="Cypress" />
@@ -28,6 +29,7 @@ describe('parkingsystem 3 - ', function()
     const homepage =new HomePage
     const businessSolution = new BusinessSolution
     const reservations = new Reservations
+    const requestInfo = new RequestInfo
 
 
 
@@ -707,8 +709,81 @@ describe('parkingsystem 3 - ', function()
         businessSolution.confirmationMessage().should('contain','Thank you for your inquiry.')
 
 
+    })
+
+
+    it('request information form', function()
+    {
+
+        cy.visit('https://test.iconparkingsystems.com/')
+
+        requestInfo.monthlyParkingTab().click({force:true})
+
+        requestInfo.requestInfoButton().should('be.visible').click()
+
+        cy.url().should('eq','https://test.iconparkingsystems.com/monthly-parking-information')
+
+        requestInfo.parkingInfoHeader().should('be.visible').should('contain','Monthly parking information')
+
+        requestInfo.parkingLocation().type('central park')
+
+        requestInfo.fullName().type('harry potter')
+
+        requestInfo.phoneNumber().type('7676565434')
+
+        requestInfo.email().type('hpotter@gmail.com')
+
+        requestInfo.phoneCheckBox().click()
+
+        requestInfo.vehicheMake().type('car')
+
+        requestInfo.vehicleModel().type('BMW')
+
+        requestInfo.currentCustomerNo().click()
+
+        requestInfo.submitButton().should('be.enabled').click()
+
+        requestInfo.toastMessage().should('be.visible')
+
+        requestInfo.thankYouMessage().should('be.visible').should('contain','Thank you for submitting your monthly parking request')
 
     })
+
+    //Reservations search
+    it('search reservations usin ticket number', function() 
+    {
+
+        cy.viewport(1366, 900)
+
+        cy.login({email: 'trapti.saxena@outworx.com', password: 'Test@123'})
+
+        reservations.reservationsTab().click()
+
+        cy.wait(5000)
+
+        reservations.reservationsTab().click()
+
+        cy.url().should('eq','https://admin-test.iconparkingsystems.com/admin/reservations')
+
+        reservations.reservationsHeader().should('contain.text','Reservations')
+
+        reservations.reservationSearch().should('be.visible')
+        
+        reservations.reservationSearchButton().should('be.visible')
+
+        reservations.reservationSearch().type('IQ382578')
+
+        reservations.reservationSearchButton().click()
+
+        cy.wait(10000)
+
+        reservations.userselect().should('contain.text','Nitesh Sirohi')
+
+        reservations.userselect().click()
+
+    })
+    
+
 
 
 })      

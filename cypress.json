@@ -21,9 +21,8 @@
         "reporterEnabled": "mochawesome",
         "mochawesomeReporterOptions": {
             "reportDir": "cypress/reports/mochawsome-report",
-            "charts": true,
             "overwrite": false,
-            "html": false,
+            "html": true,
             "json": true,
             "timestamp":"mmddyyy-HHMMss"
         }
