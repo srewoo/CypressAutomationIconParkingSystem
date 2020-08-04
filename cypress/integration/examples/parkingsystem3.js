@@ -33,7 +33,7 @@ describe('parkingsystem 3 - ', function()
 
 
 
-    before(function(){
+    beforeEach(function(){
 
         cy.fixture('users.json').then(function(data){
 
@@ -420,7 +420,6 @@ describe('parkingsystem 3 - ', function()
         careers.applyButton().should('be.visible').and('contain','Apply Online').and('have.attr','href','/employment-application')
 
         careers.applyButton().click()
-
         cy.url().should('eq','https://test.iconparkingsystems.com/employment-application')
 
         careers.pageImage().should('be.visible')
@@ -538,8 +537,10 @@ describe('parkingsystem 3 - ', function()
 
         businessSolution.businessSolutionLink().click({force:true})
 
-        businessSolution.pageHeader().should('contain','Welcome Back to Work! You’re in great company.')
-            .and('have.css','color','rgb(255, 255, 255)')
+        cy.wait(4000)
+
+        businessSolution.pageHeaderBSol().should('contain','Welcome Back to Work! You’re in great company.')
+        businessSolution.pageHeaderBSol().should('have.css','color','rgb(255, 255, 255)')
 
 
         businessSolution.formpanel().should('be.visible')

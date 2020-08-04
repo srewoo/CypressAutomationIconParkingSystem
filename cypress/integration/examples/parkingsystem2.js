@@ -465,7 +465,7 @@ describe('parkingsystem 2- ', function()
 
         evCharging.emailAddressField().type('hpotter@gmail.com',{force: true})
 
-        cy.get('#floating-label-google-map2 > :nth-child(2) > .row > :nth-child(1) > .btn').should('be.visible').click()
+        cy.get('#floating-label-google-map1 > :nth-child(2) > .row > :nth-child(1) > .btn').click()
 
         //evCharging.emailCouponButton().click({force:true})
 

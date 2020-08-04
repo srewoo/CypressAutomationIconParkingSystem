@@ -6,7 +6,7 @@ businessSolutionLink(){
 }
 
 //pageHeader
-pageHeader(){
+pageHeaderBSol(){
     return cy.get('.text-white > h1')
 }
 
