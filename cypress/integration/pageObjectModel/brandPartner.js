@@ -24,6 +24,22 @@ class brand{
     closePartner1Menu(){
         return cy.get('app-brand-partnership > .mg-space-init > .mg-targets > .mg-target > .mg-close')
     }
+
+    //sharebite
+    sharebite(){
+        return cy.get('[data-id="2"] > .mg-trigger > .partner-pic-wrap > .partner-pic')
+    }
+
+    //handy
+    handy(){
+        return cy.get('[data-id="3"] > .mg-trigger > .partner-pic-wrap > .partner-pic')
+    }
+
+    //close promo
+    closePromo(){
+        return cy.get('.mg-close')
+    }
+
 }
 
 export default brand

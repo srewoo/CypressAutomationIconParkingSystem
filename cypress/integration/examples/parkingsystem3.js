@@ -9,6 +9,8 @@ import HomePage from  './../pageObjectModel/homePage'
 import BusinessSolution from './../pageObjectModel/businessSolution'
 import Reservations from './../pageObjectModel/reservations'
 import RequestInfo from './../pageObjectModel/requestInfoForm'
+import Brand from 'D:/CypressWorkSpace/cypress/integration/pageObjectModel/brandPartner.js'
+
 
 
 /// <reference types="Cypress" />
@@ -30,6 +32,8 @@ describe('parkingsystem 3 - ', function()
     const businessSolution = new BusinessSolution
     const reservations = new Reservations
     const requestInfo = new RequestInfo
+    const brand = new Brand
+
 
 
 
@@ -783,7 +787,69 @@ describe('parkingsystem 3 - ', function()
         reservations.userselect().click()
 
     })
-    
+
+    //update user address
+    it('update user address', function() {
+
+        cy.login({email: 'trapti.saxena@outworx.com', password: 'Test@123'})
+
+        cy.get('.admin-table-header > .admin-list-table-search > input').click();
+
+        cy.get('.admin-table-header > .admin-list-table-search > input').click().clear().type('cypresscat');
+
+        cy.get('.admin-table-header > .admin-list-table-search > .fa').click();
+        
+        cy.wait(20000)
+
+        cy.get('.user-actions > a > .fa').click()
+
+        cy.wait(20000)
+
+        cy.get('app-header > .btn-primary').should('contain.text','Stop acting as user')
+
+        cy.get('.mar-top-0 > .pull-right > .fa').click()
+
+        cy.get('.row > :nth-child(3) > .form-group > .form-control').click().clear().type('auto')
+        
+        cy.get(':nth-child(7) > .form-group > .form-control').click().clear().type('9876543210')
+
+        cy.get(':nth-child(9) > .form-group > .form-control').click().clear().type('201306')
+
+        cy.get('.mar-bottom-xs > .btn').click()
+
+        cy.get('.col-sm-4 > .well > :nth-child(2)').should('contain.text','cypresscat')
+        cy.get('.well > :nth-child(4)').should('contain.text','(987) 654-3210')
+        cy.get('.col-sm-4 > .well > .mar-top-sm').should('contain.text','201306')
+        
+    })
+
+    //Brand Partner promotions
+    it.only('Brand Partner promotions', function() {
+
+        cy.viewport(1366, 900)
+
+        cy.login({email: 'trapti.saxena@outworx.com', password: 'Test@123'})
+
+        brand.myAccountLink().click()
+
+        brand.brandPartnerTab().click()
+
+        brand.partnerMenu1().click()
+
+        brand.textPartnerMenu1().should('contain.text', 'FlyCleaners')
+
+        brand.closePartner1Menu().click()
+
+        brand.sharebite().should('be.visible').click()
+
+       // brand.closePromo().click()
+
+        brand.handy().should('be.visible').click()
+
+        brand.closePromo().click()
+
+
+    })
 
 
 
